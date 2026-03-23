@@ -34,7 +34,7 @@ cp SKILL.md ~/.claude/skills/skill-authoring/SKILL.md
 
 ```bash
 # Personal scope
-mkdir -p ~/.claude/skills/skill-authoring && curl -fsSL https://raw.githubusercontent.com/mofoadel/skill-authoring-skill/main/SKILL.md -o ~/.claude/skills/skill-authoring/SKILL.md
+mkdir -p ~/.claude/skills/skill-authoring && curl -fsSL https://raw.githubusercontent.com/MohamedBIqbal/skill-authoring-skill/main/SKILL.md -o ~/.claude/skills/skill-authoring/SKILL.md
 ```
 
 ## Usage
