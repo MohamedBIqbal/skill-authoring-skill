@@ -66,7 +66,28 @@ The AI will use skill-authoring guidelines to:
 
 ## Compatibility
 
-Skills follow an open standard — the same `SKILL.md` format works across any AI coding tool that supports it.
+Write once as `SKILL.md`, then convert to any AI coding tool's format:
+
+| Tool | Format | Command |
+|------|--------|---------|
+| Claude Code | `.claude/skills/*/SKILL.md` | Native — no conversion needed |
+| Cursor | `.cursorrules` | `./convert.sh SKILL.md cursor` |
+| Windsurf | `.windsurfrules` | `./convert.sh SKILL.md windsurf` |
+| GitHub Copilot | `.github/copilot-instructions.md` | `./convert.sh SKILL.md copilot` |
+| Aider | `.aider.prompt.md` | `./convert.sh SKILL.md aider` |
+| All at once | All of the above | `./convert.sh SKILL.md all` |
+
+### Convert any SKILL.md
+
+The converter works with any skill, not just this one:
+
+```bash
+# Convert your own skill to Cursor format
+./convert.sh path/to/your/SKILL.md cursor
+
+# Convert to all formats, output to a specific directory
+./convert.sh path/to/your/SKILL.md all ./my-project
+```
 
 ## License
 
