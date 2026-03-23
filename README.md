@@ -1,17 +1,17 @@
 # skill-authoring
 
-A Claude Code skill that teaches Claude how to create, improve, and optimize other skills following Anthropic's official guidelines.
+A skill that teaches AI coding assistants how to create, improve, and optimize other skills — structured for discovery, quality, and portability.
 
 ## What It Does
 
-When installed, this skill activates whenever you ask Claude Code to create or improve a skill. It provides:
+When installed, this skill activates whenever you ask your AI assistant to create or improve a skill. It provides:
 
 - **Skill structure** — directory layout, YAML frontmatter requirements, bundled resources
 - **Authoring principles** — conciseness, progressive disclosure, degrees of freedom, writing style
 - **Description optimization** — how to write descriptions that trigger reliably
 - **Content patterns** — templates, examples, conditional workflows, domain organization
 - **Quality checklist** — validation criteria for naming, structure, testing, and security
-- **Evaluation methodology** — how to test skills across Haiku, Sonnet, and Opus
+- **Evaluation methodology** — how to test skills across model tiers
 
 ## Installation
 
@@ -39,7 +39,7 @@ mkdir -p ~/.claude/skills/skill-authoring && curl -fsSL https://raw.githubuserco
 
 ## Usage
 
-Once installed, Claude Code automatically activates this skill when you:
+Once installed, the skill automatically activates when you:
 
 - Ask to "create a new skill"
 - Ask to "review this skill" or "improve this skill"
@@ -57,12 +57,16 @@ You can also invoke it directly:
 ```
 > Create a skill for managing Docker containers
 
-Claude will use skill-authoring guidelines to:
+The AI will use skill-authoring guidelines to:
 1. Choose a good name (e.g., docker-management)
 2. Write an effective description for triggering
 3. Structure the SKILL.md with progressive disclosure
 4. Include the quality checklist
 ```
+
+## Compatibility
+
+Skills follow an open standard — the same `SKILL.md` format works across any AI coding tool that supports it.
 
 ## License
 

@@ -1,11 +1,11 @@
 ---
 name: skill-authoring
-description: Create, improve, and optimize Claude Code skills following Anthropic's official guidelines. Use when creating new skills, reviewing existing skills for quality, optimizing skill descriptions for triggering, or preparing skills for official submission and approval.
+description: Create, improve, and optimize AI coding assistant skills. Use when creating new skills, reviewing existing skills for quality, optimizing skill descriptions for triggering, or preparing skills for distribution.
 ---
 
 # Skill Authoring Guide
 
-Create skills that follow Anthropic's official guidelines for discovery, quality, and potential approval.
+Create high-quality skills for AI coding assistants — structured for discovery, maintainability, and portability.
 
 ## Skill Structure
 
@@ -31,7 +31,7 @@ description: What the skill does and when to use it.
 
 | Field | Required | Constraints |
 |-------|----------|-------------|
-| `name` | Yes | Max 64 chars, lowercase letters/numbers/hyphens only. No XML tags. Cannot contain "anthropic" or "claude" |
+| `name` | Yes | Max 64 chars, lowercase letters/numbers/hyphens only. No XML tags |
 | `description` | Yes | Max 1024 chars, non-empty, no XML tags. Third person ("Processes files..." not "I process files..."). Include WHAT it does AND WHEN to use it |
 
 ### Optional Frontmatter
@@ -39,7 +39,7 @@ description: What the skill does and when to use it.
 | Field | Purpose |
 |-------|---------|
 | `disable-model-invocation: true` | Only user can invoke (for side-effect workflows like deploy, commit) |
-| `user-invocable: false` | Only Claude can invoke (background knowledge) |
+| `user-invocable: false` | Only the AI can invoke (background knowledge) |
 | `allowed-tools` | Restrict tool access: `Read, Grep, Glob` |
 | `context: fork` | Run in isolated subagent context |
 | `agent` | Subagent type when forked: `Explore`, `Plan`, `general-purpose` |
@@ -50,11 +50,11 @@ description: What the skill does and when to use it.
 
 ### 1. Concise is Key
 
-Claude is already very smart. Only add context Claude doesn't already have.
+LLMs are already very capable. Only add context the model doesn't already have.
 
 Challenge each piece of information:
-- "Does Claude really need this explanation?"
-- "Can I assume Claude knows this?"
+- "Does the model really need this explanation?"
+- "Can I assume this is common knowledge for an LLM?"
 - "Does this paragraph justify its token cost?"
 
 **Good** (~50 tokens):
@@ -105,7 +105,7 @@ use a library. There are many libraries available...
 
 ## Writing Effective Descriptions
 
-The description is the primary triggering mechanism. Claude uses it to choose the right skill from potentially 100+ available skills.
+The description is the primary triggering mechanism. The AI uses it to choose the right skill from potentially 100+ available skills.
 
 **Rules:**
 - Write in third person ("Processes files..." not "I process files...")
@@ -177,7 +177,7 @@ skill-name/
     ├── domain-b.md
     └── domain-c.md
 ```
-Claude reads only the relevant reference file.
+The AI reads only the relevant reference file based on the task at hand.
 
 ## Workflows and Feedback Loops
 
@@ -212,12 +212,12 @@ Run validator → fix errors → repeat. This pattern greatly improves output qu
 | Windows-style paths (`scripts\helper.py`) | Always use forward slashes |
 | Deeply nested references (SKILL.md → file1 → file2) | Keep references one level deep |
 | Vague names (`helper`, `utils`) | Descriptive names (`pdf-processing`, `form-validation`) |
-| Over-explaining what Claude already knows | Challenge every paragraph's token cost |
+| Over-explaining what the LLM already knows | Challenge every paragraph's token cost |
 | Rigid ALWAYS/NEVER instructions | Explain the reasoning instead |
 
 ## Scripts Best Practices (If Applicable)
 
-- Handle errors explicitly in scripts — don't punt to Claude
+- Handle errors explicitly in scripts — don't leave them for the AI to interpret
 - Document all constants with reasoning (no "voodoo constants")
 - List required packages with install instructions
 - Make execution intent clear: "Run script.py" (execute) vs "See script.py" (read as reference)
@@ -227,31 +227,31 @@ Run validator → fix errors → repeat. This pattern greatly improves output qu
 ## Evaluation and Iteration
 
 ### Build Evaluations First
-1. Run Claude on representative tasks WITHOUT the skill
+1. Run the AI on representative tasks WITHOUT the skill
 2. Document specific failures or missing context
 3. Create 3+ test scenarios that test these gaps
 4. Establish baseline performance
 5. Write minimal skill content to address gaps
 6. Test, compare, iterate
 
-### Test With Multiple Models
-- **Haiku**: Does the skill provide enough guidance?
-- **Sonnet**: Is the skill clear and efficient?
-- **Opus**: Does the skill avoid over-explaining?
+### Test With Multiple Model Tiers
+- **Smaller models**: Does the skill provide enough guidance?
+- **Mid-range models**: Is the skill clear and efficient?
+- **Frontier models**: Does the skill avoid over-explaining?
 
-What works for Opus might need more detail for Haiku.
+What works for a frontier model might need more detail for a smaller one.
 
 ### Iterative Development Pattern
-1. Work with Claude A to design/refine the skill
-2. Test with Claude B (fresh instance with skill loaded) on real tasks
+1. Work with instance A to design/refine the skill
+2. Test with instance B (fresh session with skill loaded) on real tasks
 3. Observe behavior: where does it struggle, succeed, or surprise?
-4. Return to Claude A with observations for improvements
+4. Return to instance A with observations for improvements
 5. Repeat until stable
 
 ## Checklist for Effective Skills
 
 ### Core Quality
-- [ ] Name: lowercase, hyphens, max 64 chars, no reserved words
+- [ ] Name: lowercase, hyphens, max 64 chars
 - [ ] Description: third person, specific, includes what AND when, max 1024 chars
 - [ ] SKILL.md body under 500 lines
 - [ ] Additional details in separate reference files (if needed)
@@ -272,7 +272,7 @@ What works for Opus might need more detail for Haiku.
 
 ### Testing
 - [ ] At least 3 evaluation scenarios created
-- [ ] Tested with Haiku, Sonnet, and Opus
+- [ ] Tested across model tiers (small, mid, frontier)
 - [ ] Tested with real usage scenarios
 - [ ] Baseline comparison (with vs without skill)
 - [ ] Team feedback incorporated (if applicable)
@@ -285,10 +285,8 @@ What works for Opus might need more detail for Haiku.
 ## Publishing and Distribution
 
 Skills can be distributed via:
-- **Project scope**: `.claude/skills/skill-name/SKILL.md` in repo
-- **Personal scope**: `~/.claude/skills/skill-name/SKILL.md` for all projects
-- **Claude.ai upload**: Settings > Capabilities > Skills (individual)
-- **Organization deployment**: Admin-managed workspace-wide skills
-- **Open standard**: Skills are portable across tools and platforms
-
-Agent Skills are published as an open standard — the same skill should work whether used in Claude Code, Claude.ai, or other AI platforms.
+- **Project scope**: `.claude/skills/skill-name/SKILL.md` in repo (team-wide)
+- **Personal scope**: `~/.claude/skills/skill-name/SKILL.md` (all your projects)
+- **Platform upload**: Via your AI assistant's settings/capabilities UI (if supported)
+- **Organization deployment**: Admin-managed workspace-wide distribution
+- **Open standard**: Skills are portable — the same SKILL.md works across any tool that supports the format
