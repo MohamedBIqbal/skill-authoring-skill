@@ -7,11 +7,13 @@ A skill that teaches AI coding assistants how to create, improve, and optimize o
 When installed, this skill activates whenever you ask your AI assistant to create or improve a skill. It provides:
 
 - **Skill structure** — directory layout, YAML frontmatter requirements, bundled resources
+- **Frontmatter reference** — linter-safe vs extended fields, workarounds for validator bugs
+- **Context budget management** — formula for max skills, description length targets at scale
 - **Authoring principles** — conciseness, progressive disclosure, degrees of freedom, writing style
 - **Description optimization** — how to write descriptions that trigger reliably
+- **Scaling patterns** — heavy skills, domain scoping, cross-skill collaboration, compaction resilience
 - **Content patterns** — templates, examples, conditional workflows, domain organization
-- **Quality checklist** — validation criteria for naming, structure, testing, and security
-- **Evaluation methodology** — how to test skills across model tiers
+- **Quality checklist** — validation criteria for naming, structure, scaling, and security
 
 ## Installation
 
@@ -61,7 +63,8 @@ The AI will use skill-authoring guidelines to:
 1. Choose a good name (e.g., docker-management)
 2. Write an effective description for triggering
 3. Structure the SKILL.md with progressive disclosure
-4. Include the quality checklist
+4. Check context budget (description length vs formula)
+5. Apply the quality checklist
 ```
 
 ## Compatibility
